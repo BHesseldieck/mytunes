@@ -8,6 +8,12 @@ var PlayerView = Backbone.View.extend({
   initialize: function() {
   },
 
+  events: {
+    'ended': function() {
+      this.model.ended();
+    }
+  },
+
   setSong: function(song) {
     this.model = song;
     this.render();
@@ -18,3 +24,4 @@ var PlayerView = Backbone.View.extend({
   }
 
 });
+//file:///Users/student/Desktop/2016-09-mytunes/test/SpecRunner.html?grep=SongQueue%20when%20a%20song%20ends
