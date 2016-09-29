@@ -32,4 +32,11 @@ describe('App', function() {
     expect(app.get('songQueue').at(0)).to.equal(app.get('library').at(1));
   });
 
+  it('removes song from Queue when an "dequeue" event is fired', function() {
+    app.get('library').at(0).enqueue();
+    app.get('library').at(1).enqueue();
+    app.get('songQueue').at(1).dequeue();
+    expect(app.get('songQueue').at(0)).to.equal(app.get('library').at(0));
+  });
+
 });
