@@ -6,13 +6,22 @@ var Songs = Backbone.Collection.extend({
   url: 'https://api.parse.com/1/classes/songs/',
 
   initialize: function() {
-    this.fetch();
+    if (localStorage.length === 0) {
+      console.log('fetched');
+      this.fetch();
+    } else {
+      _.each(localStorage, function (song, index) {
+        this.add(JSON.parse(localStorage.getItem(index)));
+      }, this);
+      console.log(this);
+    }
   },
 
   parse: function(response) {
-    response.results.forEach(function(song) {
+    response.results.forEach(function(song, index) {
       song.playCount = 0;
       song.like = true;
+      localStorage.setItem(index, JSON.stringify(song));
     });
     return response.results;
   },
