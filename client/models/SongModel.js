@@ -18,4 +18,12 @@ var SongModel = Backbone.Model.extend({
     this.trigger('ended', this);
   },
 
+  toggleLike: function () {
+    if (this.get('like')) {
+      this.set('like', false);
+    } else {
+      this.set('like', true);
+    }
+  }
+
 });

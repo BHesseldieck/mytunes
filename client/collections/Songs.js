@@ -10,7 +10,26 @@ var Songs = Backbone.Collection.extend({
   },
 
   parse: function(response) {
+    response.results.forEach(function(song) {
+      song.playCount = 0;
+      song.like = true;
+    });
     return response.results;
+  },
+
+  sortByField: function(field) {
+    this.comparator = this.fieldSetter(field);
+    this.sort(this.comparator);
+  },
+
+  fieldSetter: function(field) {
+    return function(model) {
+      if (model.get(field)) {
+        return -1;
+      } else {
+        return 1;
+      }
+    };
   }
   
 });

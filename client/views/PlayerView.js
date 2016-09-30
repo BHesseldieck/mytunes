@@ -11,11 +11,12 @@ var PlayerView = Backbone.View.extend({
   events: {
     'ended': function() {
       this.model.ended();
-    }
+    },
   },
 
   setSong: function(song) {
     this.model = song;
+    song.attributes.playCount += 1;
     this.render();
   },
 
