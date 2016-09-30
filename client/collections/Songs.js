@@ -13,7 +13,7 @@ var Songs = Backbone.Collection.extend({
       _.each(localStorage, function (song, index) {
         this.add(JSON.parse(localStorage.getItem(index)));
       }, this);
-      console.log(this);
+      console.log('from localStorage', this);
     }
   },
 
